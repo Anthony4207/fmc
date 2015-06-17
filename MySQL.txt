@@ -1,13 +1,13 @@
 create table Industries
 (
-  IndustryID int(10) not null auto_increment, 
+  IndustryID int not null auto_increment, 
   Name       varchar(255), 
   primary key (IndustryID)
 );
 
 create table EmployabilitySkills
 (
-  EmployabilitySkillID int(10) not null auto_increment, 
+  EmployabilitySkillID int not null auto_increment, 
   Skill                varchar(80), 
   Requirements         varchar(255), 
   primary key (EmployabilitySkillID)
@@ -15,7 +15,7 @@ create table EmployabilitySkills
 
 create table SkillsInDemand
 (
-  SkillsInDemandID   int(10) not null auto_increment, 
+  SkillsInDemandID   int not null auto_increment, 
   ANZSCO             varchar(30), 
   AssessingAuthority varchar(255), 
   primary key (SkillsInDemandID)
@@ -23,32 +23,60 @@ create table SkillsInDemand
 
 create table Categories
 (
-  CategoryID                              int(10) not null auto_increment, 
-  IndustryID                    int(10) not null, 
-  EmployabilitySkillID int(10) not null, 
-  SkillsInDemandID          int(10) not null, 
-  Name                                    varchar(80), 
+  CategoryID         int not null auto_increment, 
+  IndustryID         int not null, 
+  EmployabilitySkillID      int not null, 
+  SkillsInDemandID          int not null, 
+  Name                      varchar(80), 
   primary key (CategoryID),
   foreign key (IndustryID) references Industries(IndustryID),
   foreign key (EmployabilitySkillID) references EmployabilitySkills(EmployabilitySkillID),
   foreign key (SkillsInDemandID) references SkillsInDemand(SkillsInDemandID)
 );
 
+
+create table CategoryEmployabilitySkills
+(
+  CategoryEmployabilitySkillID  int not null auto_increment,
+  CategoryID                    int not null,
+  EmployabilitySkillID          int not null,
+  primary key (CategoryEmployabilitySkillID),
+  foreign key (CategoryID) references Categories(CategoryID),
+  foreign key (EmployabilitySkillID) references EmployabilitySkills(EmployabilitySkillID)
+);
+
 create table Courses
 (
-  CourseID             int(10) not null auto_increment, 
-  CategoryID int(10)   not null, 
+  CourseID             int not null auto_increment, 
+  CategoryID           int not null, 
   Name                 varchar(80), 
   Duration             varchar(60), 
   Provider             varchar(60), 
-  Link                 int(100), 
+  Link                 varchar(100), 
   primary key (CourseID),
   foreign key (CategoryID) references Categories(CategoryID)
 );
 
+create table JobOutcomes
+(
+  JobOutcomeID      int not null auto_increment,
+  Name              varchar(80),
+  primary key (JobOutcomeID)
+);
+
+create table CourseJobOutcomes
+(
+  CourseJobOutcomeID    int not null auto_increment,
+  JobOutcomeID          int not null,
+  CourseID              int not null,
+  primary key (CourseJobOutcomeID),
+  foreign key (JobOutcomeID) references JobOutcomes(JobOutcomeID),
+  foreign key (CourseID) references Courses(CourseID)
+);
+
 create table Users
 (
-  userID        int(10) not null auto_increment, 
+  userID        int not null auto_increment, 
   Email         varchar(60), 
   DateOfBirth   date, 
   ContactNumber int(20), 
@@ -60,11 +88,11 @@ create table Users
 
 create table Analytics
 (
-  AnalyticID      int(10) not null auto_increment, 
-  UserID     int(10) not null, 
-  CourseID int(10) not null, 
-  DateAccessed    date, 
+  AnalyticID        int not null auto_increment, 
+  UserID            int not null, 
+  CourseID          int not null, 
+  DateAccessed      date, 
   primary key (AnalyticID),
-  foreign key (UserID) references Users(UserID),
-  foreign key (CourseID) references Courses(CourseID)
+  foreign key (UserID)      references Users(UserID),
+  foreign key (CourseID)    references Courses(CourseID)
 );
