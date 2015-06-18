@@ -201,6 +201,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Quit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonQuitActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelLogin">
       <Properties>
@@ -213,6 +216,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLoginActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonCreateAccount">
       <Properties>

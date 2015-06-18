@@ -59,35 +59,37 @@ public class dbConnection
 	}
 	return false;
     }
-    
+
     public boolean isUserAdmin(User u)
     {
 	String sql = "select `Admin` from `Users` where `userID` = ?;";
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, u.getUserID());
-	    
+
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
-	    
+
 	    rs = ps.executeQuery();
-	    return rs.first();
+	    while (rs.first()) {
+		return rs.getBoolean("Admin");
+	    }
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
 	return false;
     }
-    
+
     public User populateUserFields(User u)
     {
 	String sql = "select 1 from `Users` where `UserID` = ?;";
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, u.getUserID());
-	    
+
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
-	    
+
 	    rs = ps.executeQuery();
-	    
+
 	    u.setUserEmail(rs.getString("Email"));
 	    u.setUserDateOfBirth(rs.getDate("DateOfBirth"));
 	    u.setUserContactNumber(rs.getString("ContactNumber"));
@@ -99,7 +101,7 @@ public class dbConnection
 	}
 	return u;
     }
-    
+
     public void insertUser(User u)
     {
 	String sql = "insert into `Users` (`userID`, `Email`, `DateOfBirth`, `ContactNumber`, `CreationDate`, `LastLoginDate`, `Admin`) values (?, ?, ?, ?, ?, ?);";
@@ -111,9 +113,9 @@ public class dbConnection
 	    ps.setDate(4, u.getUserCreationDate());
 	    ps.setDate(5, u.getUserLastLoginDate());
 	    ps.setBoolean(6, u.isUserAdmin());
-	    
+
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
-	    
+
 	    ps.executeQuery();
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
@@ -122,27 +124,26 @@ public class dbConnection
 
     //</editor-fold>
     //<editor-fold desc="Industry">
-    
     public ArrayList<Industry> getIndustries()
     {
 	String sql = "select * from `Industries`;";
 	ArrayList<Industry> industries = new ArrayList<>();
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
-	    
+
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
-	    
-	    while (rs.next())
+
+	    while (rs.next()) {
 		industries.add(new Industry(rs.getInt("IndustryID"), rs.getString("Name")));
+	    }
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
 	return industries;
     }
-    
+
     //</editor-fold>
     //<editor-fold desc="Category">
-    
     public ArrayList<Category> getCategoriesForIndustry(Industry i)
     {
 	String sql = "select * from `Categories` where `IndustryID` = ?;";
@@ -150,16 +151,17 @@ public class dbConnection
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, i.getIndustryID());
-	    
+
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
-	    
-	    while (rs.next())
+
+	    while (rs.next()) {
 		categories.add(new Category(rs.getInt("CategoryID"), rs.getInt("IndustryID"), rs.getInt("EmployabilitySkillID"), rs.getInt("SkillsInDemandID"), rs.getString("Name")));
+	    }
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
 	return categories;
     }
-    
+
     //</editor-fold>
 }
