@@ -77,7 +77,48 @@ public class dbConnection
 	return false;
     }
     
+    public User populateUserFields(User u)
+    {
+	String sql = "select 1 from `Users` where `UserID` = ?;";
+	try {
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setInt(1, u.getUserID());
+	    
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+	    
+	    rs = ps.executeQuery();
+	    
+	    u.setUserEmail(rs.getString("Email"));
+	    u.setUserDateOfBirth(rs.getDate("DateOfBirth"));
+	    u.setUserContactNumber(rs.getString("ContactNumber"));
+	    u.setUserCreationDate(rs.getDate("CreationDate"));
+	    u.setUserLastLoginDate(rs.getDate("LastLoginDate"));
+	    u.setUserAdmin(rs.getBoolean("Admin"));
+	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+	}
+	return u;
+    }
     
+    public void insertUser(User u)
+    {
+	String sql = "insert into `Users` (`userID`, `Email`, `DateOfBirth`, `ContactNumber`, `CreationDate`, `LastLoginDate`, `Admin`) values (?, ?, ?, ?, ?, ?);";
+	try {
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setInt(1, 0);
+	    ps.setString(2, u.getUserEmail());
+	    ps.setString(3, u.getUserContactNumber());
+	    ps.setDate(4, u.getUserCreationDate());
+	    ps.setDate(5, u.getUserLastLoginDate());
+	    ps.setBoolean(6, u.isUserAdmin());
+	    
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+	    
+	    ps.executeQuery();
+	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+	}
+    }
 
     //</editor-fold>
     //<editor-fold desc="Industry">
