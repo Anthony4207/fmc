@@ -177,6 +177,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Modify Categories"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAdminModifyCategoriesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonAdminViewAnalytics">
       <Properties>
@@ -218,6 +221,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create an account"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCreateAccountActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelIndustry">
       <Properties>

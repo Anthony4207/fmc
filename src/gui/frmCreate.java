@@ -158,6 +158,7 @@ public class frmCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_button_createAccountActionPerformed
 
     private void button_cancelcreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelcreateAccountActionPerformed
+        this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_button_cancelcreateAccountActionPerformed
 

@@ -113,6 +113,11 @@ public class frmMain extends javax.swing.JFrame
         });
 
         buttonAdminModifyCategories.setText("Modify Categories");
+        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdminModifyCategoriesActionPerformed(evt);
+            }
+        });
 
         buttonAdminViewAnalytics.setText("View Analytics");
         buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +135,11 @@ public class frmMain extends javax.swing.JFrame
         buttonLogin.setText("Login");
 
         buttonCreateAccount.setText("Create an account");
+        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCreateAccountActionPerformed(evt);
+            }
+        });
 
         labelIndustry.setText("Industry");
 
@@ -213,6 +223,16 @@ public class frmMain extends javax.swing.JFrame
     private void buttonAdminViewAnalyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdminViewAnalyticsActionPerformed
         new frmAnalytics().setVisible(true);
     }//GEN-LAST:event_buttonAdminViewAnalyticsActionPerformed
+
+    private void buttonAdminModifyCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdminModifyCategoriesActionPerformed
+        new frmCategories().setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonAdminModifyCategoriesActionPerformed
+
+    private void buttonCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCreateAccountActionPerformed
+        new frmCreate().setVisible(true);
+// TODO add your handling code here:
+    }//GEN-LAST:event_buttonCreateAccountActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;
