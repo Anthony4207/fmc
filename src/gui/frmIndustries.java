@@ -21,14 +21,14 @@ public class frmIndustries extends javax.swing.JFrame {
 
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        textbox_addIndustry = new javax.swing.JTextField();
+        textfield_addIndustry = new javax.swing.JTextField();
         button_addIndustry = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         combobox_editIndustry = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        textbox_editIndustry = new javax.swing.JTextField();
+        textfield_editIndustry = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -47,6 +47,11 @@ public class frmIndustries extends javax.swing.JFrame {
         jLabel1.setText("Add");
 
         button_addIndustry.setText("Add Industry");
+        button_addIndustry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_addIndustryActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Edit");
@@ -96,11 +101,11 @@ public class frmIndustries extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textbox_addIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(textfield_addIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(textbox_editIndustry))
+                                .addComponent(textfield_editIndustry))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -135,7 +140,7 @@ public class frmIndustries extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(textbox_addIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textfield_addIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button_addIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -149,7 +154,7 @@ public class frmIndustries extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(textbox_editIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textfield_editIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button_editIndustry)
                 .addGap(8, 8, 8)
@@ -174,6 +179,11 @@ public class frmIndustries extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_button_closeActionPerformed
 
+    private void button_addIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_addIndustryActionPerformed
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_addIndustryActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_addIndustry;
     private javax.swing.JButton button_close;
@@ -192,7 +202,7 @@ public class frmIndustries extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField textbox_addIndustry;
-    private javax.swing.JTextField textbox_editIndustry;
+    private javax.swing.JTextField textfield_addIndustry;
+    private javax.swing.JTextField textfield_editIndustry;
     // End of variables declaration//GEN-END:variables
 }
