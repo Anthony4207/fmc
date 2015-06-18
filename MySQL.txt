@@ -13,25 +13,16 @@ create table EmployabilitySkills
   primary key (EmployabilitySkillID)
 );
 
-create table SkillsInDemand
-(
-  SkillsInDemandID   int not null auto_increment, 
-  ANZSCO             varchar(30), 
-  AssessingAuthority varchar(255), 
-  primary key (SkillsInDemandID)
-);
 
 create table Categories
 (
   CategoryID         int not null auto_increment, 
   IndustryID         int not null, 
   EmployabilitySkillID      int not null, 
-  SkillsInDemandID          int not null, 
   Name                      varchar(80), 
   primary key (CategoryID),
   foreign key (IndustryID) references Industries(IndustryID),
   foreign key (EmployabilitySkillID) references EmployabilitySkills(EmployabilitySkillID),
-  foreign key (SkillsInDemandID) references SkillsInDemand(SkillsInDemandID)
 );
 
 
@@ -61,6 +52,7 @@ create table JobOutcomes
 (
   JobOutcomeID      int not null auto_increment,
   Name              varchar(80),
+  InDemand			boolean,
   primary key (JobOutcomeID)
 );
 
