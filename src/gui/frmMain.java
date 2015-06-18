@@ -78,8 +78,7 @@ public class frmMain extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         comboCategory = new javax.swing.JComboBox();
         panelRadioOptions = new javax.swing.JPanel();
@@ -140,10 +139,20 @@ public class frmMain extends javax.swing.JFrame
         );
 
         buttonAdminModifyIndustries.setText("Modify Industries");
+        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdminModifyIndustriesActionPerformed(evt);
+            }
+        });
 
         buttonAdminModifyCategories.setText("Modify Categories");
 
         buttonAdminViewAnalytics.setText("View Analytics");
+        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdminViewAnalyticsActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -272,6 +281,14 @@ public class frmMain extends javax.swing.JFrame
     {//GEN-HEADEREND:event_buttonQuitActionPerformed
         this.dispose();
     }//GEN-LAST:event_buttonQuitActionPerformed
+
+    private void buttonAdminModifyIndustriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdminModifyIndustriesActionPerformed
+        new frmIndustries().setVisible(true);
+    }//GEN-LAST:event_buttonAdminModifyIndustriesActionPerformed
+
+    private void buttonAdminViewAnalyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdminViewAnalyticsActionPerformed
+        new frmAnalytics().setVisible(true);
+    }//GEN-LAST:event_buttonAdminViewAnalyticsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;
