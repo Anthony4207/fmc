@@ -1,41 +1,74 @@
 package gui;
 
+import data.User;
+import data.dbConnection;
+import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class frmMain extends javax.swing.JFrame
 {
 
+    dbConnection dbCon;
+
     public frmMain()
     {
-        initComponents();
+	initComponents();
+	disableAdminComponents();
+	dbCon = new dbConnection();
     }
 
     public static void main(String args[])
     {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+	try {
+	    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+		if ("Windows".equals(info.getName())) {
+		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+		    break;
+		}
+	    }
+	} catch (ClassNotFoundException ex) {
+	    java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (InstantiationException ex) {
+	    java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (IllegalAccessException ex) {
+	    java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+	    java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	}
+	//</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new frmMain().setVisible(true);
-            }
-        });
+	/* Create and display the form */
+	java.awt.EventQueue.invokeLater(new Runnable()
+	{
+	    public void run()
+	    {
+		new frmMain().setVisible(true);
+	    }
+	});
+    }
+
+    private void enableUserComponents()
+    {
+	comboIndustry.setEnabled(true);
+	comboCategory.setEnabled(true);
+	for (Component c : panelRadioOptions.getComponents()) {
+	    c.setEnabled(true);
+	}
+    }
+
+    private void enableAdminComponents()
+    {
+	buttonAdminModifyIndustries.setVisible(true);
+	buttonAdminModifyCategories.setVisible(true);
+	buttonAdminViewAnalytics.setVisible(true);
+    }
+
+    private void disableAdminComponents()
+    {
+	buttonAdminModifyIndustries.setVisible(false);
+	buttonAdminModifyCategories.setVisible(false);
+	buttonAdminViewAnalytics.setVisible(false);
     }
 
     /**
@@ -115,10 +148,24 @@ public class frmMain extends javax.swing.JFrame
         jScrollPane1.setViewportView(jEditorPane1);
 
         buttonQuit.setText("Quit");
+        buttonQuit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                buttonQuitActionPerformed(evt);
+            }
+        });
 
         labelLogin.setText("You must login first");
 
         buttonLogin.setText("Login");
+        buttonLogin.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                buttonLoginActionPerformed(evt);
+            }
+        });
 
         buttonCreateAccount.setText("Create an account");
 
@@ -196,6 +243,35 @@ public class frmMain extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_buttonLoginActionPerformed
+    {//GEN-HEADEREND:event_buttonLoginActionPerformed
+	if (!textFieldUserID.getText().isEmpty()) {
+	    try {
+		int userID = Integer.parseInt(textFieldUserID.getText());
+		User u = new User(userID);
+
+		if (dbCon.isUserExist(u)) {
+		    enableUserComponents();
+		    disableAdminComponents();
+		    labelLogin.setText("Logged in as " + u.getUserID());
+		    if (dbCon.isUserAdmin(u)) {
+			labelLogin.setText("Logged in as " + u.getUserID() + " (Admin)");
+			enableAdminComponents();
+		    }
+		} else {
+		    labelLogin.setText("User account does not exist");
+		}
+	    } catch (NumberFormatException e) {
+		Logger.getLogger(frmMain.class.getName()).log(Level.WARNING, "Cannot parse userID!", e);
+	    }
+	}
+    }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void buttonQuitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_buttonQuitActionPerformed
+    {//GEN-HEADEREND:event_buttonQuitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_buttonQuitActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;
