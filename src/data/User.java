@@ -11,7 +11,7 @@ public class User {
     private int userID;
     private String userEmail;
     private Date userDateOfBirth;
-    private int userContactNumber;
+    private String userContactNumber;
     private Date userCreationDate;
     private Date userLastLoginDate;
     private boolean userAdmin;
@@ -21,7 +21,7 @@ public class User {
         this.userID = userID;
     }
     
-    public User(int userID, String userEmail, Date userDateOfBirth, int userContactNumber, Date userCreationDate, Date userLastLoginDate, boolean userAdmin) {
+    public User(int userID, String userEmail, Date userDateOfBirth, String userContactNumber, Date userCreationDate, Date userLastLoginDate, boolean userAdmin) {
 
         this.userID = userID;
         this.userEmail = userEmail;
@@ -77,14 +77,14 @@ public class User {
     /**
      * @return the userContactNumber
      */
-    public int getUserContactNumber() {
+    public String getUserContactNumber() {
         return userContactNumber;
     }
 
     /**
      * @param userContactNumber the userContactNumber to set
      */
-    public void setUserContactNumber(int userContactNumber) {
+    public void setUserContactNumber(String userContactNumber) {
         this.userContactNumber = userContactNumber;
     }
 
