@@ -22,7 +22,7 @@ create table Categories
   Name                      varchar(80), 
   primary key (CategoryID),
   foreign key (IndustryID) references Industries(IndustryID),
-  foreign key (EmployabilitySkillID) references EmployabilitySkills(EmployabilitySkillID),
+  foreign key (EmployabilitySkillID) references EmployabilitySkills(EmployabilitySkillID)
 );
 
 
