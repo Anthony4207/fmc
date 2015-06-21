@@ -5,6 +5,7 @@ import data.dbConnection;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 public class frmMain extends javax.swing.JFrame
 {
@@ -71,6 +72,10 @@ public class frmMain extends javax.swing.JFrame
 	buttonAdminViewAnalytics.setVisible(false);
     }
 
+    private void populateComboIndustry()
+    {
+        comboIndustry.setModel(new DefaultComboBoxModel(dbCon.getIndustries().toArray()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
