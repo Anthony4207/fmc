@@ -133,6 +133,8 @@ public class dbConnection
 
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
+	    rs = ps.executeQuery();
+	    
 	    while (rs.next()) {
 		industries.add(new Industry(rs.getInt("IndustryID"), rs.getString("Name")));
 	    }
