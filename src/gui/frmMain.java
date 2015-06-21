@@ -83,7 +83,8 @@ public class frmMain extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         comboCategory = new javax.swing.JComboBox();
         panelRadioOptions = new javax.swing.JPanel();
@@ -144,22 +145,28 @@ public class frmMain extends javax.swing.JFrame
         );
 
         buttonAdminModifyIndustries.setText("Modify Industries");
-        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonAdminModifyIndustriesActionPerformed(evt);
             }
         });
 
         buttonAdminModifyCategories.setText("Modify Categories");
-        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonAdminModifyCategoriesActionPerformed(evt);
             }
         });
 
         buttonAdminViewAnalytics.setText("View Analytics");
-        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonAdminViewAnalyticsActionPerformed(evt);
             }
         });
@@ -187,8 +194,10 @@ public class frmMain extends javax.swing.JFrame
         });
 
         buttonCreateAccount.setText("Create an account");
-        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonCreateAccountActionPerformed(evt);
             }
         });
@@ -196,6 +205,19 @@ public class frmMain extends javax.swing.JFrame
         labelIndustry.setText("Industry");
 
         comboIndustry.setEnabled(false);
+        comboIndustry.addPopupMenuListener(new javax.swing.event.PopupMenuListener()
+        {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt)
+            {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt)
+            {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt)
+            {
+                comboIndustryPopupMenuWillBecomeVisible(evt);
+            }
+        });
 
         labelCategory.setText("Category");
 
@@ -307,13 +329,16 @@ public class frmMain extends javax.swing.JFrame
 
     private void buttonAdminModifyCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdminModifyCategoriesActionPerformed
         new frmCategories().setVisible(true);
-        // TODO add your handling code here:
     }//GEN-LAST:event_buttonAdminModifyCategoriesActionPerformed
 
     private void buttonCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCreateAccountActionPerformed
         new frmCreate().setVisible(true);
-// TODO add your handling code here:
     }//GEN-LAST:event_buttonCreateAccountActionPerformed
+
+    private void comboIndustryPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt)//GEN-FIRST:event_comboIndustryPopupMenuWillBecomeVisible
+    {//GEN-HEADEREND:event_comboIndustryPopupMenuWillBecomeVisible
+        populateComboIndustry();
+    }//GEN-LAST:event_comboIndustryPopupMenuWillBecomeVisible
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;
