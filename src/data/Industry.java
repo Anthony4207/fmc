@@ -16,6 +16,11 @@ public class Industry
 	this.industryName = industryName;
     }
 
+    @Override
+    public String toString()
+    {
+        return this.industryName;
+    }
     /**
      * @return the industryID
      */

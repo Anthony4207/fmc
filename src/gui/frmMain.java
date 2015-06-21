@@ -1,10 +1,14 @@
 package gui;
 
+import data.Industry;
 import data.User;
 import data.dbConnection;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 public class frmMain extends javax.swing.JFrame
 {
@@ -14,7 +18,8 @@ public class frmMain extends javax.swing.JFrame
     public frmMain()
     {
 	initComponents();
-	disableAdminComponents();
+	enableUserComponents();
+        enableAdminComponents();
 	dbCon = new dbConnection();
     }
 
@@ -71,6 +76,11 @@ public class frmMain extends javax.swing.JFrame
 	buttonAdminViewAnalytics.setVisible(false);
     }
 
+    private void populateComboIndustry()
+    {
+        comboIndustry.setModel(new DefaultComboBoxModel(dbCon.getIndustries().toArray()));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,10 +167,8 @@ public class frmMain extends javax.swing.JFrame
         jScrollPane1.setViewportView(jEditorPane1);
 
         buttonQuit.setText("Quit");
-        buttonQuit.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonQuitActionPerformed(evt);
             }
         });
@@ -168,10 +176,8 @@ public class frmMain extends javax.swing.JFrame
         labelLogin.setText("You must login first");
 
         buttonLogin.setText("Login");
-        buttonLogin.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoginActionPerformed(evt);
             }
         });
@@ -181,6 +187,15 @@ public class frmMain extends javax.swing.JFrame
         labelIndustry.setText("Industry");
 
         comboIndustry.setEnabled(false);
+        comboIndustry.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboIndustryPopupMenuWillBecomeVisible(evt);
+            }
+        });
 
         labelCategory.setText("Category");
 
@@ -289,6 +304,10 @@ public class frmMain extends javax.swing.JFrame
     private void buttonAdminViewAnalyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdminViewAnalyticsActionPerformed
         new frmAnalytics().setVisible(true);
     }//GEN-LAST:event_buttonAdminViewAnalyticsActionPerformed
+
+    private void comboIndustryPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboIndustryPopupMenuWillBecomeVisible
+        populateComboIndustry();
+    }//GEN-LAST:event_comboIndustryPopupMenuWillBecomeVisible
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;

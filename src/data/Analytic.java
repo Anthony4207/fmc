@@ -15,7 +15,7 @@ public class Analytic {
     private Date dateAccessed;
          
     
-    public Analytic(int analyticID, int userID, int courseID, Date dateAccessed) {
+    public Analytic(int analyticID, int userID, int courseID, Date dateAccessed) {  
 
 this.analyticID = analyticID;
 this.userID = userID;
