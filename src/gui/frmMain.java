@@ -55,6 +55,7 @@ public class frmMain extends javax.swing.JFrame
     {
 	comboIndustry.setEnabled(true);
 	comboCategory.setEnabled(true);
+	comboCourse.setEnabled(true);
 	for (Component c : panelRadioOptions.getComponents()) {
 	    c.setEnabled(true);
 	}
@@ -84,6 +85,10 @@ public class frmMain extends javax.swing.JFrame
         comboCategory.setModel(new DefaultComboBoxModel(dbCon.getCategoriesForIndustry((Industry) comboIndustry.getSelectedItem()).toArray()));
     }
     
+    private void populateComboCourse()
+    {
+	comboCourse.setModel(new DefaultComboBoxModel(dbCon.getCoursesForCategory((Category) comboCategory.getSelectedItem()).toArray()));
+    }
     
     private void setContentText(String s)
     {
@@ -117,10 +122,18 @@ public class frmMain extends javax.swing.JFrame
         labelIndustry = new javax.swing.JLabel();
         comboIndustry = new javax.swing.JComboBox();
         labelCategory = new javax.swing.JLabel();
+        comboCourse = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         comboCategory.setEnabled(false);
+        comboCategory.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboCategoryItemStateChanged(evt);
+            }
+        });
 
         panelRadioOptions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -155,7 +168,7 @@ public class frmMain extends javax.swing.JFrame
             .addGroup(panelRadioOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(radioCareerPathways)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(radioEmployabilitySkills)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -231,6 +244,8 @@ public class frmMain extends javax.swing.JFrame
 
         labelCategory.setText("Category");
 
+        comboCourse.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,6 +264,7 @@ public class frmMain extends javax.swing.JFrame
                             .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonAdminModifyCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(comboCourse, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(panelRadioOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buttonQuit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,9 +287,9 @@ public class frmMain extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAdminViewAnalytics))
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addComponent(buttonLogin)
                         .addGap(7, 7, 7)
                         .addComponent(buttonCreateAccount)
@@ -291,9 +307,13 @@ public class frmMain extends javax.swing.JFrame
                         .addComponent(buttonAdminModifyCategories)
                         .addGap(11, 11, 11)
                         .addComponent(panelRadioOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comboCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonQuit))
-                    .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -358,6 +378,11 @@ public class frmMain extends javax.swing.JFrame
 	
     }//GEN-LAST:event_radioCareerPathwaysActionPerformed
 
+    private void comboCategoryItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboCategoryItemStateChanged
+    {//GEN-HEADEREND:event_comboCategoryItemStateChanged
+        populateComboCourse();
+    }//GEN-LAST:event_comboCategoryItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;
     private javax.swing.JButton buttonAdminModifyIndustries;
@@ -367,6 +392,7 @@ public class frmMain extends javax.swing.JFrame
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonQuit;
     private javax.swing.JComboBox comboCategory;
+    private javax.swing.JComboBox comboCourse;
     private javax.swing.JComboBox comboIndustry;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JScrollPane jScrollPane1;

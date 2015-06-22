@@ -253,6 +253,27 @@ public class dbConnection
     }
 
     //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Courses">
+    public ArrayList<Course> getCoursesForCategory(Category c)
+    {
+	String sql = "select * from `Courses` where `CategoryID` = ?;";
+	ArrayList<Course> courses = new ArrayList<>();
+	try {
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setInt(1, c.getCategoryID());
+	    
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+	    
+	    rs = ps.executeQuery();
+	    while (rs.next()) {
+		courses.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Duration"), rs.getString("Provider"), rs.getString("Link")));
+	    }
+	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+	}
+	return courses;
+    }
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="EmployabilitySkills">
     public ArrayList<String> getEmployabilitySkillsForCategory(Category c)
     {
@@ -275,6 +296,23 @@ public class dbConnection
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Career Pathways">
-    
+    public ArrayList<String> getCareerPathwaysForCategory(Category c)
+    {
+	String sql = ";";
+	ArrayList<String> careerPathwaysForCategory = new ArrayList<>();
+	try {
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setInt(1, c.getCategoryID());
+	    
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, String.format("Connection %s:%s@%s:%d/%s", dbUsername, dbPassword, dbServerAddress, dbServerPort, dbDatabaseName));
+
+	    rs = ps.executeQuery();
+	    while (rs.next()) {
+		careerPathwaysForCategory.add(rs.getString("Skill") + "\n" + rs.getString("Requirements"));
+	    }
+	} catch (SQLException e) {
+	}
+	return careerPathwaysForCategory;
+    }
     //</editor-fold>
 }

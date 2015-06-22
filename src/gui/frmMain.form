@@ -41,6 +41,7 @@
                           <Component id="comboCategory" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
                           <Component id="buttonAdminModifyCategories" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="comboCourse" alignment="0" max="32767" attributes="0"/>
                               <Component id="panelRadioOptions" alignment="0" max="32767" attributes="0"/>
                               <Component id="buttonQuit" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -72,9 +73,9 @@
                   <Component id="textFieldUserID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonAdminViewAnalytics" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="buttonLogin" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Component id="buttonCreateAccount" min="-2" max="-2" attributes="0"/>
@@ -92,10 +93,15 @@
                       <Component id="buttonAdminModifyCategories" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="panelRadioOptions" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="comboCourse" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonQuit" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="333" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -110,6 +116,9 @@
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboCategoryItemStateChanged"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="panelRadioOptions">
       <Properties>
@@ -126,7 +135,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="radioCareerPathways" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioCareerPathways" min="-2" max="-2" attributes="0"/>
                       <Component id="radioEmployabilitySkills" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="51" max="32767" attributes="0"/>
@@ -138,7 +147,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="radioCareerPathways" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="radioEmployabilitySkills" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -254,6 +263,14 @@
     <Component class="javax.swing.JLabel" name="labelCategory">
       <Properties>
         <Property name="text" type="java.lang.String" value="Category"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboCourse">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
   </SubComponents>
