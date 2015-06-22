@@ -143,6 +143,22 @@ public class dbConnection
 	}
 	return industries;
     }
+    
+    public void insertIndustry(Industry i)
+    {
+	String sql = "insert into `industries` (`IndustryID`, `Name`) values (?, ?);";
+        try {
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setInt(1, i.getIndustryID());
+	    ps.setString(2, i.getIndustryName());
+
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+
+	    ps.execute();
+	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+	}
+    }
 
     //</editor-fold>
     //<editor-fold desc="Category">

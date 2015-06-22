@@ -1,4 +1,6 @@
 package gui;
+import data.Industry;
+import data.dbConnection;
 
 /**
  *
@@ -6,8 +8,11 @@ package gui;
  */
 public class frmIndustries extends javax.swing.JFrame {
 
+    dbConnection dbCon;
+    
     public frmIndustries() {
         initComponents();
+        dbCon = new dbConnection();
     }
 
     /**
@@ -180,8 +185,7 @@ public class frmIndustries extends javax.swing.JFrame {
     }//GEN-LAST:event_button_closeActionPerformed
 
     private void button_addIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_addIndustryActionPerformed
-        
-        // TODO add your handling code here:
+        dbCon.insertIndustry(new Industry(0, textfield_addIndustry.getText()));
     }//GEN-LAST:event_button_addIndustryActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
