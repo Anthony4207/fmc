@@ -214,6 +214,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Edit Industry"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_editIndustryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator3">
     </Component>
@@ -221,6 +224,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Industry"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_deleteIndustryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="combobox_deleteIndustry">
       <Properties>

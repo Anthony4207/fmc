@@ -1,6 +1,7 @@
 package gui;
 import data.Industry;
 import data.dbConnection;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -13,8 +14,13 @@ public class frmIndustries extends javax.swing.JFrame {
     public frmIndustries() {
         initComponents();
         dbCon = new dbConnection();
+        populateComboIndustry();
     }
-
+    private void populateComboIndustry()
+    {
+        combobox_deleteIndustry.setModel(new DefaultComboBoxModel(dbCon.getIndustries().toArray()));
+        combobox_editIndustry.setModel(new DefaultComboBoxModel(dbCon.getIndustries().toArray()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,8 +81,18 @@ public class frmIndustries extends javax.swing.JFrame {
         jLabel7.setText("Industry:");
 
         button_editIndustry.setText("Edit Industry");
+        button_editIndustry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_editIndustryActionPerformed(evt);
+            }
+        });
 
         button_deleteIndustry.setText("Delete Industry");
+        button_deleteIndustry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_deleteIndustryActionPerformed(evt);
+            }
+        });
 
         combobox_deleteIndustry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -181,12 +197,24 @@ public class frmIndustries extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_closeActionPerformed
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_button_closeActionPerformed
 
     private void button_addIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_addIndustryActionPerformed
         dbCon.insertIndustry(new Industry(0, textfield_addIndustry.getText()));
     }//GEN-LAST:event_button_addIndustryActionPerformed
+
+    private void button_deleteIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_deleteIndustryActionPerformed
+        Industry i = (Industry) combobox_deleteIndustry.getSelectedItem();
+        dbCon.deleteIndustry(i);
+    }//GEN-LAST:event_button_deleteIndustryActionPerformed
+
+    private void button_editIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_editIndustryActionPerformed
+//        Industry a = (Industry) combobox_editIndustry.getSelectedItem();
+//        Industry b = new Industry(textfield_editIndustry.getText());
+//        
+//        dbCon.updateIndustry(a, b);
+    }//GEN-LAST:event_button_editIndustryActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_addIndustry;
