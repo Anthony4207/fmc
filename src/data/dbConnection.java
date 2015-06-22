@@ -182,6 +182,75 @@ public class dbConnection
 	}
 	return categories;
     }
+    
+    public ArrayList<Category> getCategories()
+        {
+	String sql = "select * from `Categories`;";
+	ArrayList<Category> categories = new ArrayList<>();
+	try {
+	    PreparedStatement ps = con.prepareStatement(sql);
+
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+
+            rs = ps.executeQuery();
+            
+	    while (rs.next()) {
+		categories.add(new Category(rs.getInt("CategoryID"), rs.getInt("IndustryID"), rs.getInt("EmployabilitySkillID"), rs.getString("Name")));
+	    }
+	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+	}
+	return categories;
+    }
+    
+    public void updateCategory(Category c, Category cc)
+    {
+        String sql = "update `Categories` set `Name` = ? where `CategoryID` = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cc.getCategoryName());
+            ps.setInt(2, c.getCategoryID());
+            
+            Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+            
+            // ps.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
+    
+    public void deleteCategory(Category c)
+    {
+        String sql = "delete from `Categories` where `CategoryID` = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, c.getCategoryID());
+            
+            Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+            
+            // ps.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
+    
+    public void insertCategory(Category c)
+    {
+        String sql = "insert into `Categories` (`CategoryID`, `IndustryID`, `EmployabilitySkillID`, `Name`) values (?, ?, ?, ?);";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, c.getCategoryID());
+            ps.setInt(2, c.getIndustryID());
+            ps.setInt(3, c.getEmployabilitySkillID());
+            ps.setString(4, c.getCategoryName());
+            
+            Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+            
+            // ps.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
 
     //</editor-fold>
 }
