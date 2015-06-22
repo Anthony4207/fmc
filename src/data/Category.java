@@ -10,16 +10,20 @@ public class Category
     private int categoryID;
     private int industryID;
     private int employabilitySkillID;
-    private int skillsInDemandID;
     private String categoryName;
 
-    public Category(int categoryID, int industryID, int employabilitySkillID, int skillsInDemandID, String categoryName)
+    public Category(int categoryID, int industryID, int employabilitySkillID, String categoryName)
     {
 	this.categoryID = categoryID;
 	this.industryID = industryID;
 	this.employabilitySkillID = employabilitySkillID;
-	this.skillsInDemandID = skillsInDemandID;
 	this.categoryName = categoryName;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return this.categoryName;
     }
 
     /**
@@ -68,22 +72,6 @@ public class Category
     public void setEmployabilitySkillID(int employabilitySkillID)
     {
 	this.employabilitySkillID = employabilitySkillID;
-    }
-
-    /**
-     * @return the skillsInDemandID
-     */
-    public int getSkillsInDemandID()
-    {
-	return skillsInDemandID;
-    }
-
-    /**
-     * @param skillsInDemandID the skillsInDemandID to set
-     */
-    public void setSkillsInDemandID(int skillsInDemandID)
-    {
-	this.skillsInDemandID = skillsInDemandID;
     }
 
     /**
