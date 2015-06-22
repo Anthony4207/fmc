@@ -146,7 +146,7 @@ public class dbConnection
     
     public void insertIndustry(Industry i)
     {
-	String sql = "insert into `industries` (`IndustryID`, `Name`) values (?, ?);";
+	String sql = "insert into `industries` (`IndustryID`, `IndustryName`) values (?, ?);";
         try {
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, i.getIndustryID());
@@ -177,10 +177,11 @@ public class dbConnection
     }
      public void updateIndustry(Industry i)
      {
-         String sql = "Update 'Industries' where 'IndustryName' = ?;";
+         String sql = "Update 'Industries' set `Name` = ? where 'CategoryID' = ?;";
          try {
              PreparedStatement ps = con.prepareStatement(sql);
-             ps.setInt(1, i.getIndustryID());
+             ps.setString(1, i.getIndustryName());
+             ps.setInt(2, i.getIndustryID());
              
              Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
                     

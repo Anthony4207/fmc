@@ -211,9 +211,9 @@ public class frmIndustries extends javax.swing.JFrame {
 
     private void button_editIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_editIndustryActionPerformed
 //        Industry a = (Industry) combobox_editIndustry.getSelectedItem();
-//        Industry b = new Industry(textfield_editIndustry.getText());
-//        
-//        dbCon.updateIndustry(a, b);
+//        Industry b = new Industry(0, textfield_editIndustry.getText());
+//       
+//        dbCon.updateIndustry();
     }//GEN-LAST:event_button_editIndustryActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
