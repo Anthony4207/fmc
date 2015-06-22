@@ -1,5 +1,6 @@
 package gui;
 
+import data.Category;
 import data.Industry;
 import data.User;
 import data.dbConnection;
@@ -82,6 +83,12 @@ public class frmMain extends javax.swing.JFrame
     {
         comboCategory.setModel(new DefaultComboBoxModel(dbCon.getCategoriesForIndustry((Industry) comboIndustry.getSelectedItem()).toArray()));
     }
+    
+    
+    private void setContentText(String s)
+    {
+	jEditorPane1.setText(s);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,12 +96,13 @@ public class frmMain extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
+        buttonGroupOptions = new javax.swing.ButtonGroup();
         comboCategory = new javax.swing.JComboBox();
         panelRadioOptions = new javax.swing.JPanel();
         radioCareerPathways = new javax.swing.JRadioButton();
-        radioSkillsInDemand = new javax.swing.JRadioButton();
         radioEmployabilitySkills = new javax.swing.JRadioButton();
         buttonAdminModifyIndustries = new javax.swing.JButton();
         buttonAdminModifyCategories = new javax.swing.JButton();
@@ -116,12 +124,18 @@ public class frmMain extends javax.swing.JFrame
 
         panelRadioOptions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        buttonGroupOptions.add(radioCareerPathways);
         radioCareerPathways.setText("Career pathways");
         radioCareerPathways.setEnabled(false);
+        radioCareerPathways.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                radioCareerPathwaysActionPerformed(evt);
+            }
+        });
 
-        radioSkillsInDemand.setText("Skills in demand");
-        radioSkillsInDemand.setEnabled(false);
-
+        buttonGroupOptions.add(radioEmployabilitySkills);
         radioEmployabilitySkills.setText("Employability skills");
         radioEmployabilitySkills.setEnabled(false);
 
@@ -133,7 +147,6 @@ public class frmMain extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(panelRadioOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(radioCareerPathways)
-                    .addComponent(radioSkillsInDemand)
                     .addComponent(radioEmployabilitySkills))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -142,30 +155,34 @@ public class frmMain extends javax.swing.JFrame
             .addGroup(panelRadioOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(radioCareerPathways)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radioSkillsInDemand)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(radioEmployabilitySkills)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         buttonAdminModifyIndustries.setText("Modify Industries");
-        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonAdminModifyIndustriesActionPerformed(evt);
             }
         });
 
         buttonAdminModifyCategories.setText("Modify Categories");
-        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonAdminModifyCategoriesActionPerformed(evt);
             }
         });
 
         buttonAdminViewAnalytics.setText("View Analytics");
-        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonAdminViewAnalyticsActionPerformed(evt);
             }
         });
@@ -173,8 +190,10 @@ public class frmMain extends javax.swing.JFrame
         jScrollPane1.setViewportView(jEditorPane1);
 
         buttonQuit.setText("Quit");
-        buttonQuit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonQuit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonQuitActionPerformed(evt);
             }
         });
@@ -182,15 +201,19 @@ public class frmMain extends javax.swing.JFrame
         labelLogin.setText("You must login first");
 
         buttonLogin.setText("Login");
-        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonLogin.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonLoginActionPerformed(evt);
             }
         });
 
         buttonCreateAccount.setText("Create an account");
-        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 buttonCreateAccountActionPerformed(evt);
             }
         });
@@ -198,8 +221,10 @@ public class frmMain extends javax.swing.JFrame
         labelIndustry.setText("Industry");
 
         comboIndustry.setEnabled(false);
-        comboIndustry.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        comboIndustry.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 comboIndustryItemStateChanged(evt);
             }
         });
@@ -266,7 +291,7 @@ public class frmMain extends javax.swing.JFrame
                         .addComponent(buttonAdminModifyCategories)
                         .addGap(11, 11, 11)
                         .addComponent(panelRadioOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonQuit))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -325,11 +350,20 @@ public class frmMain extends javax.swing.JFrame
         populateComboCategory();
     }//GEN-LAST:event_comboIndustryItemStateChanged
 
+    private void radioCareerPathwaysActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_radioCareerPathwaysActionPerformed
+    {//GEN-HEADEREND:event_radioCareerPathwaysActionPerformed
+        String s = "";
+	s += dbCon.getEmployabilitySkillsForCategory((Category) comboCategory.getSelectedItem());
+	setContentText(s);
+	
+    }//GEN-LAST:event_radioCareerPathwaysActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;
     private javax.swing.JButton buttonAdminModifyIndustries;
     private javax.swing.JButton buttonAdminViewAnalytics;
     private javax.swing.JButton buttonCreateAccount;
+    private javax.swing.ButtonGroup buttonGroupOptions;
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonQuit;
     private javax.swing.JComboBox comboCategory;
@@ -342,7 +376,6 @@ public class frmMain extends javax.swing.JFrame
     private javax.swing.JPanel panelRadioOptions;
     private javax.swing.JRadioButton radioCareerPathways;
     private javax.swing.JRadioButton radioEmployabilitySkills;
-    private javax.swing.JRadioButton radioSkillsInDemand;
     private javax.swing.JTextField textFieldUserID;
     // End of variables declaration//GEN-END:variables
 }
