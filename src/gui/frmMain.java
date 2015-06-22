@@ -1,5 +1,6 @@
 package gui;
 
+import data.Industry;
 import data.User;
 import data.dbConnection;
 import java.awt.Component;
@@ -76,6 +77,11 @@ public class frmMain extends javax.swing.JFrame
     {
         comboIndustry.setModel(new DefaultComboBoxModel(dbCon.getIndustries().toArray()));
     }
+    
+    private void populateComboCategory()
+    {
+        comboCategory.setModel(new DefaultComboBoxModel(dbCon.getCategoriesForIndustry((Industry) comboIndustry.getSelectedItem()).toArray()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,8 +89,7 @@ public class frmMain extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         comboCategory = new javax.swing.JComboBox();
         panelRadioOptions = new javax.swing.JPanel();
@@ -145,28 +150,22 @@ public class frmMain extends javax.swing.JFrame
         );
 
         buttonAdminModifyIndustries.setText("Modify Industries");
-        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdminModifyIndustriesActionPerformed(evt);
             }
         });
 
         buttonAdminModifyCategories.setText("Modify Categories");
-        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdminModifyCategoriesActionPerformed(evt);
             }
         });
 
         buttonAdminViewAnalytics.setText("View Analytics");
-        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdminViewAnalyticsActionPerformed(evt);
             }
         });
@@ -174,10 +173,8 @@ public class frmMain extends javax.swing.JFrame
         jScrollPane1.setViewportView(jEditorPane1);
 
         buttonQuit.setText("Quit");
-        buttonQuit.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonQuitActionPerformed(evt);
             }
         });
@@ -185,19 +182,15 @@ public class frmMain extends javax.swing.JFrame
         labelLogin.setText("You must login first");
 
         buttonLogin.setText("Login");
-        buttonLogin.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoginActionPerformed(evt);
             }
         });
 
         buttonCreateAccount.setText("Create an account");
-        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCreateAccountActionPerformed(evt);
             }
         });
@@ -205,17 +198,9 @@ public class frmMain extends javax.swing.JFrame
         labelIndustry.setText("Industry");
 
         comboIndustry.setEnabled(false);
-        comboIndustry.addPopupMenuListener(new javax.swing.event.PopupMenuListener()
-        {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt)
-            {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt)
-            {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt)
-            {
-                comboIndustryPopupMenuWillBecomeVisible(evt);
+        comboIndustry.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboIndustryItemStateChanged(evt);
             }
         });
 
@@ -305,6 +290,7 @@ public class frmMain extends javax.swing.JFrame
 			labelLogin.setText("Logged in as " + u.getUserID() + " (Admin)");
 			enableAdminComponents();
 		    }
+                    populateComboIndustry();
 		} else {
 		    labelLogin.setText("User account does not exist");
 		}
@@ -335,10 +321,9 @@ public class frmMain extends javax.swing.JFrame
         new frmCreate().setVisible(true);
     }//GEN-LAST:event_buttonCreateAccountActionPerformed
 
-    private void comboIndustryPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt)//GEN-FIRST:event_comboIndustryPopupMenuWillBecomeVisible
-    {//GEN-HEADEREND:event_comboIndustryPopupMenuWillBecomeVisible
-        populateComboIndustry();
-    }//GEN-LAST:event_comboIndustryPopupMenuWillBecomeVisible
+    private void comboIndustryItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboIndustryItemStateChanged
+        populateComboCategory();
+    }//GEN-LAST:event_comboIndustryItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;

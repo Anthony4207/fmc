@@ -156,8 +156,10 @@ public class dbConnection
 
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
+            rs = ps.executeQuery();
+            
 	    while (rs.next()) {
-		categories.add(new Category(rs.getInt("CategoryID"), rs.getInt("IndustryID"), rs.getInt("EmployabilitySkillID"), rs.getInt("SkillsInDemandID"), rs.getString("Name")));
+		categories.add(new Category(rs.getInt("CategoryID"), rs.getInt("IndustryID"), rs.getInt("EmployabilitySkillID"), rs.getString("Name")));
 	    }
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
