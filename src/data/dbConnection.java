@@ -160,6 +160,37 @@ public class dbConnection
 	}
     }
 
+    public void deleteIndustry(Industry i)
+    {
+        String sql = "delete from `Industries` where `IndustryID` = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, i.getIndustryID());
+            
+            Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+            
+             ps.execute();
+            
+        } catch (SQLException e) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
+     public void updateIndustry(Industry i)
+     {
+         String sql = "Update 'Industries' where 'IndustryName' = ?;";
+         try {
+             PreparedStatement ps = con.prepareStatement(sql);
+             ps.setInt(1, i.getIndustryID());
+             
+             Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+                    
+             ps.execute();
+        
+          } catch (SQLException e) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        
+         }
+     }
     //</editor-fold>
     //<editor-fold desc="Category">
     public ArrayList<Category> getCategoriesForIndustry(Industry i)
