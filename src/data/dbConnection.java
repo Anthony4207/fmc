@@ -244,7 +244,7 @@ public class dbConnection
             
             Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
             
-            // ps.execute();
+             ps.execute();
         } catch (SQLException e) {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
@@ -259,7 +259,7 @@ public class dbConnection
             
             Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
             
-            // ps.execute();
+             ps.execute();
         } catch (SQLException e) {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
@@ -277,7 +277,7 @@ public class dbConnection
             
             Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
             
-            // ps.execute();
+             ps.execute();
         } catch (SQLException e) {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
