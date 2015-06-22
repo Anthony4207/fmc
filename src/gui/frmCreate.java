@@ -6,17 +6,31 @@
 
 package gui;
 
+import data.User;
+import data.dbConnection;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+
+
 /**
  *
  * @author 5100319915
  */
 public class frmCreate extends javax.swing.JFrame {
 
+    dbConnection dbCon;
+    
     /**
      * Creates new form frmCreate
      */
     public frmCreate() {
         initComponents();
+        dbCon = new dbConnection();
     }
 
     /**
@@ -59,8 +73,14 @@ public class frmCreate extends javax.swing.JFrame {
 
         jLabel4.setText("Email:");
 
+        textfield_createEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textfield_createEmailActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel5.setText("(use dd-mm-yyyy format)");
+        jLabel5.setText("(use yyyy-mm-dd format)");
 
         button_createAccount.setText("Create");
         button_createAccount.addActionListener(new java.awt.event.ActionListener() {
@@ -102,21 +122,18 @@ public class frmCreate extends javax.swing.JFrame {
                 .addContainerGap(54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(textfield_createEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(textfield_createDob, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(46, 46, 46))
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(textfield_createEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(textfield_createDob, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(textfield_createContnum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))))
+                        .addComponent(textfield_createContnum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,12 +172,24 @@ public class frmCreate extends javax.swing.JFrame {
 
     private void button_createAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_createAccountActionPerformed
         // TODO add your handling code here:
+        
+//        Date rightnow = new Date(System.currentTimeMillis());
+//        
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = (textfield_createDob);
+//        
+//        dbCon.insertUser(new User(0, textfield_createEmail.getText(), dateTextField, textfield_createContnum.getText(), rightnow, rightnow, false));
+        
     }//GEN-LAST:event_button_createAccountActionPerformed
 
     private void button_cancelcreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelcreateAccountActionPerformed
         this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_button_cancelcreateAccountActionPerformed
+
+    private void textfield_createEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfield_createEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textfield_createEmailActionPerformed
 
     /**
      * @param args the command line arguments
