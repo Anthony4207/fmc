@@ -1,6 +1,6 @@
 package data;
 
-class Course
+public class Course
 {
 
     private int courseID;

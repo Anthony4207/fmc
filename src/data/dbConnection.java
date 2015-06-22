@@ -283,7 +283,7 @@ public class dbConnection
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, c.getCategoryID());
 
-	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, String.format("Connection %s:%s@%s:%d/%s", dbUsername, dbPassword, dbServerAddress, dbServerPort, dbDatabaseName));
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
 	    rs = ps.executeQuery();
 	    while (rs.next()) {
@@ -296,19 +296,19 @@ public class dbConnection
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Career Pathways">
-    public ArrayList<String> getCareerPathwaysForCategory(Category c)
+    public ArrayList<JobOutcome> getCareerPathwaysForCourse(Course c)
     {
-	String sql = ";";
-	ArrayList<String> careerPathwaysForCategory = new ArrayList<>();
+	String sql = "select JobOutcomes.*, CourseJobOutcomes.* from Courses join CourseJobOutcomes on Courses.CourseID = CourseJobOutcomes.CourseID join JobOutcomes on CourseJobOutcomes.JobOutcomeID = JobOutcomes.JobOutcomeID where Courses.CourseID = ?;";
+	ArrayList<JobOutcome> careerPathwaysForCategory = new ArrayList<>();
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
-	    ps.setInt(1, c.getCategoryID());
+	    ps.setInt(1, c.getCourseID());
 	    
-	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, String.format("Connection %s:%s@%s:%d/%s", dbUsername, dbPassword, dbServerAddress, dbServerPort, dbDatabaseName));
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
 	    rs = ps.executeQuery();
 	    while (rs.next()) {
-		careerPathwaysForCategory.add(rs.getString("Skill") + "\n" + rs.getString("Requirements"));
+		careerPathwaysForCategory.add(new JobOutcome(rs.getInt("JobOutcomeID"), rs.getString("Name"), rs.getBoolean("InDemand")));
 	    }
 	} catch (SQLException e) {
 	}
