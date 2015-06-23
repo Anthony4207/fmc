@@ -9,14 +9,12 @@ public class Category
 
     private int categoryID;
     private int industryID;
-    private int employabilitySkillID;
     private String categoryName;
 
-    public Category(int categoryID, int industryID, int employabilitySkillID, String categoryName)
+    public Category(int categoryID, int industryID, String categoryName)
     {
 	this.categoryID = categoryID;
 	this.industryID = industryID;
-	this.employabilitySkillID = employabilitySkillID;
 	this.categoryName = categoryName;
     }
     
@@ -56,22 +54,6 @@ public class Category
     public void setIndustryID(int industryID)
     {
 	this.industryID = industryID;
-    }
-
-    /**
-     * @return the employabilitySkillID
-     */
-    public int getEmployabilitySkillID()
-    {
-	return employabilitySkillID;
-    }
-
-    /**
-     * @param employabilitySkillID the employabilitySkillID to set
-     */
-    public void setEmployabilitySkillID(int employabilitySkillID)
-    {
-	this.employabilitySkillID = employabilitySkillID;
     }
 
     /**

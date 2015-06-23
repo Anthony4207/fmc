@@ -2,6 +2,7 @@ package gui;
 
 import data.Category;
 import data.Course;
+import data.EmployabilitySkill;
 import data.Industry;
 import data.JobOutcome;
 import data.User;
@@ -387,9 +388,11 @@ public class frmMain extends javax.swing.JFrame
 
     private void radioCareerPathwaysActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_radioCareerPathwaysActionPerformed
     {//GEN-HEADEREND:event_radioCareerPathwaysActionPerformed
-        for (JobOutcome j : dbCon.getCareerPathwaysForCourse((Course) comboCourse.getSelectedItem())) {
-            setContentText(jEditorPane1.getText() + j.getJobOutcomeName() + "\n");
+        String s = "";
+	for (JobOutcome j : dbCon.getCareerPathwaysForCourse((Course) comboCourse.getSelectedItem())) {
+            s += String.format("%s\tIn Demand: %b\n", j.getJobOutcomeName(), j.isJobOutcomeInDemand());
         }
+	setContentText(s);
     }//GEN-LAST:event_radioCareerPathwaysActionPerformed
 
     private void comboCategoryItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboCategoryItemStateChanged
@@ -399,8 +402,10 @@ public class frmMain extends javax.swing.JFrame
 
     private void radioEmployabilitySkillsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_radioEmployabilitySkillsActionPerformed
     {//GEN-HEADEREND:event_radioEmployabilitySkillsActionPerformed
-        String s = "";
-	s += dbCon.getEmployabilitySkillsForCategory((Category) comboCategory.getSelectedItem());
+	String s = "";
+	for (EmployabilitySkill e : dbCon.getEmployabilitySkillsForCategory((Category) comboCategory.getSelectedItem())) {
+	    s += String.format("%s\n%s\n\n", e.getEmployabilitySkill(), e.getEmployabilitySkillRequirements());
+	}
 	setContentText(s);
     }//GEN-LAST:event_radioEmployabilitySkillsActionPerformed
 
