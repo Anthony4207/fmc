@@ -197,6 +197,7 @@ public class frmIndustries extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_closeActionPerformed
+        boolean refresh = true; 
         this.dispose();
     }//GEN-LAST:event_button_closeActionPerformed
 
@@ -206,7 +207,7 @@ public class frmIndustries extends javax.swing.JFrame {
 
     private void button_deleteIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_deleteIndustryActionPerformed
         Industry i = (Industry) combobox_deleteIndustry.getSelectedItem();
-        dbCon.deleteIndustry(i);
+        dbCon.deleteIndustry(i); 
     }//GEN-LAST:event_button_deleteIndustryActionPerformed
 
     private void button_editIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_editIndustryActionPerformed
