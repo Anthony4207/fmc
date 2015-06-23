@@ -18,11 +18,9 @@ create table Categories
 (
   CategoryID         int not null auto_increment, 
   IndustryID         int not null, 
-  EmployabilitySkillID      int not null, 
   Name                      varchar(80), 
   primary key (CategoryID),
-  foreign key (IndustryID) references Industries(IndustryID),
-  foreign key (EmployabilitySkillID) references EmployabilitySkills(EmployabilitySkillID)
+  foreign key (IndustryID) references Industries(IndustryID)
 );
 
 
