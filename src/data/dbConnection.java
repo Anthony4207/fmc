@@ -175,17 +175,17 @@ public class dbConnection
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
     }
-     public void updateIndustry(Industry i)
+     public void updateIndustry(Industry i, Industry name1)
      {
-         String sql = "Update 'Industries' where 'IndustryName' = ?;";
+         String sql = "update `Industries` set `Name` = ? where `IndustryID` = ?;";
          try {
              PreparedStatement ps = con.prepareStatement(sql);
-             ps.setInt(1, i.getIndustryID());
+             ps.setString(1, name1.getIndustryName());
+             ps.setInt(2, i.getIndustryID());
              
              Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
                     
-             ps.execute();
-        
+             ps.executeUpdate();
           } catch (SQLException e) {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         

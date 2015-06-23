@@ -349,6 +349,8 @@ public class frmMain extends javax.swing.JFrame
 			enableAdminComponents();
 		    }
                     populateComboIndustry();
+                    populateComboCategory();
+                    populateComboCourse();
 		} else {
 		    labelLogin.setText("User account does not exist");
 		}
