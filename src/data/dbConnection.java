@@ -206,7 +206,7 @@ public class dbConnection
 	    rs = ps.executeQuery();
 
 	    while (rs.next()) {
-		categories.add(new Category(rs.getInt("CategoryID"), rs.getInt("IndustryID"), rs.getInt("EmployabilitySkillID"), rs.getString("Name")));
+		categories.add(new Category(rs.getInt("CategoryID"), rs.getInt("IndustryID"), rs.getString("Name")));
 	    }
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
@@ -226,7 +226,7 @@ public class dbConnection
 	    rs = ps.executeQuery();
 
 	    while (rs.next()) {
-		categories.add(new Category(rs.getInt("CategoryID"), rs.getInt("IndustryID"), rs.getInt("EmployabilitySkillID"), rs.getString("Name")));
+		categories.add(new Category(rs.getInt("CategoryID"), rs.getInt("IndustryID"), rs.getString("Name")));
 	    }
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
@@ -267,13 +267,12 @@ public class dbConnection
 
     public void insertCategory(Category c)
     {
-	String sql = "insert into `Categories` (`CategoryID`, `IndustryID`, `EmployabilitySkillID`, `Name`) values (?, ?, ?, ?);";
+	String sql = "insert into `Categories` (`CategoryID`, `IndustryID`, `Name`) values (?, ?, ?);";
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, c.getCategoryID());
 	    ps.setInt(2, c.getIndustryID());
-	    ps.setInt(3, c.getEmployabilitySkillID());
-	    ps.setString(4, c.getCategoryName());
+	    ps.setString(3, c.getCategoryName());
 
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
@@ -306,10 +305,10 @@ public class dbConnection
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="EmployabilitySkills">
-    public ArrayList<String> getEmployabilitySkillsForCategory(Category c)
+    public ArrayList<EmployabilitySkill> getEmployabilitySkillsForCategory(Category c)
     {
 	String sql = "select EmployabilitySkills.*, CategoryEmployabilitySkills.* from Categories join CategoryEmployabilitySkills on Categories.CategoryID = CategoryEmployabilitySkills.CategoryID join EmployabilitySkills on CategoryEmployabilitySkills.EmployabilitySkillID = EmployabilitySkills.EmployabilitySkillID where Categories.CategoryID = ?";
-	ArrayList<String> employabilitySkillsForCategory = new ArrayList<>();
+	ArrayList<EmployabilitySkill> employabilitySkillsForCategory = new ArrayList<>();
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, c.getCategoryID());
@@ -318,7 +317,7 @@ public class dbConnection
 
 	    rs = ps.executeQuery();
 	    while (rs.next()) {
-		employabilitySkillsForCategory.add(rs.getString("Skill") + "\n" + rs.getString("Requirements"));
+		employabilitySkillsForCategory.add(new EmployabilitySkill(rs.getInt("EmployabilitySkillID"), rs.getString("Skill"), rs.getString("Requirements")));
 	    }
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);

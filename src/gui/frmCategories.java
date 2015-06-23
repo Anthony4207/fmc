@@ -474,7 +474,7 @@ public class frmCategories extends javax.swing.JFrame {
 
     private void button_confirmeditCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_confirmeditCatActionPerformed
         Category c = (Category) combobox_selectEditCat.getSelectedItem();
-        Category cc = new Category(0, 0, 0, textfield_neweditCat.getText());
+        Category cc = new Category(0, 0, textfield_neweditCat.getText());
         
         dbCon.updateCategory(c, cc);
     }//GEN-LAST:event_button_confirmeditCatActionPerformed
@@ -485,7 +485,7 @@ public class frmCategories extends javax.swing.JFrame {
 
     private void button_confirmaddCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_confirmaddCatActionPerformed
         Industry parentIndustry = (Industry) combobox_selectIndustry.getSelectedItem();
-        Category category = new Category(0, parentIndustry.getIndustryID(), 0, textfield_addCategory.getText());
+        Category category = new Category(0, parentIndustry.getIndustryID(), textfield_addCategory.getText());
         dbCon.insertCategory(category);
     }//GEN-LAST:event_button_confirmaddCatActionPerformed
 
