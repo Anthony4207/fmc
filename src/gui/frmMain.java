@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.PopupMenuEvent;
 
 public class frmMain extends javax.swing.JFrame
 {
@@ -24,6 +25,8 @@ public class frmMain extends javax.swing.JFrame
 	dbCon = new dbConnection();
     }
 
+    boolean refresh = false;
+    
     public static void main(String args[])
     {
 	try {
@@ -53,7 +56,7 @@ public class frmMain extends javax.swing.JFrame
 	    }
 	});
     }
-
+    
     private void enableUserComponents()
     {
 	comboIndustry.setEnabled(true);
@@ -80,16 +83,19 @@ public class frmMain extends javax.swing.JFrame
 
     private void populateComboIndustry()
     {
+        comboIndustry.removeAllItems();
         comboIndustry.setModel(new DefaultComboBoxModel(dbCon.getIndustries().toArray()));
     }
     
     private void populateComboCategory()
     {
+        comboCategory.removeAllItems();
         comboCategory.setModel(new DefaultComboBoxModel(dbCon.getCategoriesForIndustry((Industry) comboIndustry.getSelectedItem()).toArray()));
     }
     
     private void populateComboCourse()
     {
+        comboCourse.removeAllItems();
 	comboCourse.setModel(new DefaultComboBoxModel(dbCon.getCoursesForCategory((Category) comboCategory.getSelectedItem()).toArray()));
     }
     
@@ -104,8 +110,7 @@ public class frmMain extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroupOptions = new javax.swing.ButtonGroup();
         comboCategory = new javax.swing.JComboBox();
@@ -131,10 +136,17 @@ public class frmMain extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         comboCategory.setEnabled(false);
-        comboCategory.addItemListener(new java.awt.event.ItemListener()
-        {
-            public void itemStateChanged(java.awt.event.ItemEvent evt)
-            {
+        comboCategory.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboCategoryPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        comboCategory.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboCategoryItemStateChanged(evt);
             }
         });
@@ -144,10 +156,8 @@ public class frmMain extends javax.swing.JFrame
         buttonGroupOptions.add(radioCareerPathways);
         radioCareerPathways.setText("Career pathways");
         radioCareerPathways.setEnabled(false);
-        radioCareerPathways.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        radioCareerPathways.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioCareerPathwaysActionPerformed(evt);
             }
         });
@@ -155,10 +165,8 @@ public class frmMain extends javax.swing.JFrame
         buttonGroupOptions.add(radioEmployabilitySkills);
         radioEmployabilitySkills.setText("Employability skills");
         radioEmployabilitySkills.setEnabled(false);
-        radioEmployabilitySkills.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        radioEmployabilitySkills.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioEmployabilitySkillsActionPerformed(evt);
             }
         });
@@ -185,28 +193,22 @@ public class frmMain extends javax.swing.JFrame
         );
 
         buttonAdminModifyIndustries.setText("Modify Industries");
-        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonAdminModifyIndustries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdminModifyIndustriesActionPerformed(evt);
             }
         });
 
         buttonAdminModifyCategories.setText("Modify Categories");
-        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonAdminModifyCategories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdminModifyCategoriesActionPerformed(evt);
             }
         });
 
         buttonAdminViewAnalytics.setText("View Analytics");
-        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonAdminViewAnalytics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdminViewAnalyticsActionPerformed(evt);
             }
         });
@@ -214,10 +216,8 @@ public class frmMain extends javax.swing.JFrame
         jScrollPane1.setViewportView(jEditorPane1);
 
         buttonQuit.setText("Quit");
-        buttonQuit.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonQuitActionPerformed(evt);
             }
         });
@@ -225,19 +225,15 @@ public class frmMain extends javax.swing.JFrame
         labelLogin.setText("You must login first");
 
         buttonLogin.setText("Login");
-        buttonLogin.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoginActionPerformed(evt);
             }
         });
 
         buttonCreateAccount.setText("Create an account");
-        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        buttonCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCreateAccountActionPerformed(evt);
             }
         });
@@ -245,10 +241,17 @@ public class frmMain extends javax.swing.JFrame
         labelIndustry.setText("Industry");
 
         comboIndustry.setEnabled(false);
-        comboIndustry.addItemListener(new java.awt.event.ItemListener()
-        {
-            public void itemStateChanged(java.awt.event.ItemEvent evt)
-            {
+        comboIndustry.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboIndustryPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        comboIndustry.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboIndustryItemStateChanged(evt);
             }
         });
@@ -256,6 +259,15 @@ public class frmMain extends javax.swing.JFrame
         labelCategory.setText("Category");
 
         comboCourse.setEnabled(false);
+        comboCourse.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboCoursePopupMenuWillBecomeVisible(evt);
+            }
+        });
 
         labelCourse.setText("Course");
 
@@ -349,7 +361,6 @@ public class frmMain extends javax.swing.JFrame
 			labelLogin.setText("Logged in as " + u.getUserID() + " (Admin)");
 			enableAdminComponents();
 		    }
-                    populateComboIndustry();
 		} else {
 		    labelLogin.setText("User account does not exist");
 		}
@@ -406,6 +417,22 @@ public class frmMain extends javax.swing.JFrame
 	}
 	setContentText(s);
     }//GEN-LAST:event_radioEmployabilitySkillsActionPerformed
+
+    private void comboIndustryPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboIndustryPopupMenuWillBecomeVisible
+        populateComboIndustry();
+    }//GEN-LAST:event_comboIndustryPopupMenuWillBecomeVisible
+
+    private void comboCategoryPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboCategoryPopupMenuWillBecomeVisible
+        if (comboIndustry.getSelectedItem() != null) {
+            populateComboCategory();
+        }
+    }//GEN-LAST:event_comboCategoryPopupMenuWillBecomeVisible
+
+    private void comboCoursePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboCoursePopupMenuWillBecomeVisible
+        if (comboCategory.getSelectedItem() != null) {
+            populateComboCourse();
+        }
+    }//GEN-LAST:event_comboCoursePopupMenuWillBecomeVisible
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;
