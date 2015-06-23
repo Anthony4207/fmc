@@ -343,8 +343,25 @@ public class dbConnection
 		careerPathwaysForCategory.add(new JobOutcome(rs.getInt("JobOutcomeID"), rs.getString("Name"), rs.getBoolean("InDemand")));
 	    }
 	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
 	return careerPathwaysForCategory;
+    }
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Analytics">
+    public ResultSet getAnalyticsResultSet()
+    {
+	String sql = "select Courses.Name, Users.Email, Analytics.DateAccessed from Courses join Analytics on Courses.CourseID = Analytics.CourseID join Users on Analytics.UserID = Users.UserID";
+	try {
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+	    
+	    rs = ps.executeQuery();
+	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+	}
+	return rs;
     }
     //</editor-fold>
 }
