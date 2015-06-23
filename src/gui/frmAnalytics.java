@@ -10,6 +10,8 @@ import data.dbConnection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,24 +33,22 @@ public class frmAnalytics extends javax.swing.JFrame {
     
     private void populateTable()
     {
-	String[] tableColumnNames = { "Course", "User", "Date" };
 	DefaultTableModel model = (DefaultTableModel) tableAnalytics.getModel();
-	model.setColumnIdentifiers(tableColumnNames);
-	
-	ResultSet rs = dbCon.getAnalyticsResultSet();
+	model.setColumnIdentifiers(new Object[] {"Course", "User", "Date"});
 	
 	try {
-	    ResultSetMetaData rsmd = rs.getMetaData();
-	    int colNo = rsmd.getColumnCount();
+	    ResultSet rs = dbCon.getAnalyticsResultSet();
+	    int colCount = rs.getMetaData().getColumnCount();
 	    while (rs.next()) {
-		Object[] o = new Object[colNo];
-		for (int i = 0; i < colNo; i++) {
+		Object[] o = new Object[colCount];
+		for (int i = 0; i < colCount; i++) {
 		    o[i] = rs.getObject(i + 1);
 		}
 		model.addRow(o);
 	    }
 	    tableAnalytics.setModel(model);
 	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
     }
 

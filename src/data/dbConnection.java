@@ -341,6 +341,7 @@ public class dbConnection
 		careerPathwaysForCategory.add(new JobOutcome(rs.getInt("JobOutcomeID"), rs.getString("Name"), rs.getBoolean("InDemand")));
 	    }
 	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
 	return careerPathwaysForCategory;
     }
@@ -355,7 +356,8 @@ public class dbConnection
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 	    
 	    rs = ps.executeQuery();
-	} catch (Exception e) {
+	} catch (SQLException e) {
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
 	return rs;
     }
