@@ -280,6 +280,7 @@
       </Properties>
       <Events>
         <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="comboCoursePopupMenuWillBecomeVisible"/>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboCourseItemStateChanged"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelCourse">
