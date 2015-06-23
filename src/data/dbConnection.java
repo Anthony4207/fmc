@@ -102,24 +102,26 @@ public class dbConnection
 	return u;
     }
 
-    public void insertUser(User u)
+    public boolean insertUser(User u)
     {
-	String sql = "insert into `Users` (`userID`, `Email`, `DateOfBirth`, `ContactNumber`, `CreationDate`, `LastLoginDate`, `Admin`) values (?, ?, ?, ?, ?, ?);";
+	String sql = "insert into `Users` (`userID`, `Email`, `DateOfBirth`, `ContactNumber`, `CreationDate`, `LastLoginDate`, `Admin`) values (?, ?, ?, ?, ?, ?, ?);";
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, 0);
 	    ps.setString(2, u.getUserEmail());
-	    ps.setString(3, u.getUserContactNumber());
-	    ps.setDate(4, u.getUserCreationDate());
-	    ps.setDate(5, u.getUserLastLoginDate());
-	    ps.setBoolean(6, u.isUserAdmin());
+            ps.setDate(3, u.getUserDateOfBirth());
+	    ps.setString(4, u.getUserContactNumber());
+	    ps.setDate(5, u.getUserCreationDate());
+	    ps.setDate(6, u.getUserLastLoginDate());
+	    ps.setBoolean(7, u.isUserAdmin());
 
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
-	    ps.executeQuery();
+	    return ps.execute();
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
+        return false;
     }
 
     //</editor-fold>

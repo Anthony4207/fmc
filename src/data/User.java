@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.Date;
+import javax.swing.JFormattedTextField;
 
 /**
  *
@@ -30,6 +31,10 @@ public class User {
         this.userCreationDate = userCreationDate;
         this.userLastLoginDate = userLastLoginDate;
         this.userAdmin = userAdmin;
+    }
+
+    public User(int i, String text, JFormattedTextField dateTextField, String text0, Date rightnow, Date rightnow0, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

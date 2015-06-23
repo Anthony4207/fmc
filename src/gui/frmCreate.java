@@ -9,12 +9,11 @@ package gui;
 import data.User;
 import data.dbConnection;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
 
 
 /**
@@ -172,18 +171,28 @@ public class frmCreate extends javax.swing.JFrame {
 
     private void button_createAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_createAccountActionPerformed
         // TODO add your handling code here:
+
         
-//        Date rightnow = new Date(System.currentTimeMillis());
-//        
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date = (textfield_createDob);
-//        
-//        dbCon.insertUser(new User(0, textfield_createEmail.getText(), dateTextField, textfield_createContnum.getText(), rightnow, rightnow, false));
+        Date rightnow = new Date(System.currentTimeMillis());
+
+        java.util.Date myDate = null;
+
+        try {
+            myDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(textfield_createDob.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(frmCreate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+
+        dbCon.insertUser(new User(0, textfield_createEmail.getText(), sqlDate, textfield_createContnum.getText(), rightnow, rightnow, false));
+        
+        this.dispose();
         
     }//GEN-LAST:event_button_createAccountActionPerformed
 
     private void button_cancelcreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelcreateAccountActionPerformed
-        this.setVisible(false);
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_button_cancelcreateAccountActionPerformed
 
@@ -239,4 +248,14 @@ public class frmCreate extends javax.swing.JFrame {
     private javax.swing.JTextField textfield_createDob;
     private javax.swing.JTextField textfield_createEmail;
     // End of variables declaration//GEN-END:variables
+
+    private void dateTextField(java.util.Date parse) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static class dateTextField {
+
+        public dateTextField() {
+        }
+    }
 }
