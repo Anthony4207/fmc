@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -185,7 +186,13 @@ public class frmCreate extends javax.swing.JFrame {
         
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
-        dbCon.insertUser(new User(0, textfield_createEmail.getText(), sqlDate, textfield_createContnum.getText(), rightnow, rightnow, false));
+        User u = new User(0, textfield_createEmail.getText(), sqlDate, textfield_createContnum.getText(), rightnow, rightnow, false);
+        int thingo = dbCon.insertUser(u);
+        u = dbCon.getNewestUser();
+        
+        if (thingo == 1) {
+            new JOptionPane().showMessageDialog(null, "Your user ID is: " + u.getUserID());
+        }
         
         this.dispose();
         
