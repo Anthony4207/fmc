@@ -79,9 +79,28 @@ public class dbConnection
 	return false;
     }
 
+    public User getNewestUser()
+    {
+        String sql = "select * from `Users` order by `userID` desc;";
+        User u = new User(0);
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+            
+            rs = ps.executeQuery();
+            if (rs.first()) {
+                u.setUserID(rs.getInt("userID"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+        return u;
+    }
+    
     public User populateUserFields(User u)
     {
-	String sql = "select 1 from `Users` where `UserID` = ?;";
+	String sql = "select 1 from `Users` where `userID` = ?;";
 	try {
 	    PreparedStatement ps = con.prepareStatement(sql);
 	    ps.setInt(1, u.getUserID());
@@ -102,7 +121,7 @@ public class dbConnection
 	return u;
     }
 
-    public boolean insertUser(User u)
+    public int insertUser(User u)
     {
 	String sql = "insert into `Users` (`userID`, `Email`, `DateOfBirth`, `ContactNumber`, `CreationDate`, `LastLoginDate`, `Admin`) values (?, ?, ?, ?, ?, ?, ?);";
 	try {
@@ -117,11 +136,11 @@ public class dbConnection
 
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
-	    return ps.execute();
+	    return ps.executeUpdate();
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
-        return false;
+        return 0;
     }
 
     //</editor-fold>
