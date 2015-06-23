@@ -40,7 +40,8 @@ public class frmCreate extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         textfield_createDob = new javax.swing.JTextField();
@@ -55,12 +56,15 @@ public class frmCreate extends javax.swing.JFrame {
         button_cancelcreateAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Create an Account");
 
-        textfield_createDob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        textfield_createDob.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 textfield_createDobActionPerformed(evt);
             }
         });
@@ -73,8 +77,10 @@ public class frmCreate extends javax.swing.JFrame {
 
         jLabel4.setText("Email:");
 
-        textfield_createEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        textfield_createEmail.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 textfield_createEmailActionPerformed(evt);
             }
         });
@@ -83,15 +89,19 @@ public class frmCreate extends javax.swing.JFrame {
         jLabel5.setText("(use yyyy-mm-dd format)");
 
         button_createAccount.setText("Create");
-        button_createAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_createAccount.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_createAccountActionPerformed(evt);
             }
         });
 
         button_cancelcreateAccount.setText("Cancel");
-        button_cancelcreateAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_cancelcreateAccount.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_cancelcreateAccountActionPerformed(evt);
             }
         });

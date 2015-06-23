@@ -66,6 +66,7 @@ public class frmAnalytics extends javax.swing.JFrame {
         tableAnalytics = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         button_close.setText("Close");
         button_close.addActionListener(new java.awt.event.ActionListener()

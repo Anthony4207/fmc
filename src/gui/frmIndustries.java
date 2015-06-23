@@ -28,7 +28,8 @@ public class frmIndustries extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -53,13 +54,16 @@ public class frmIndustries extends javax.swing.JFrame {
         jButton3.setText("Edit Industry");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Add");
 
         button_addIndustry.setText("Add Industry");
-        button_addIndustry.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_addIndustry.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_addIndustryActionPerformed(evt);
             }
         });
@@ -81,15 +85,19 @@ public class frmIndustries extends javax.swing.JFrame {
         jLabel7.setText("Industry:");
 
         button_editIndustry.setText("Edit Industry");
-        button_editIndustry.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_editIndustry.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_editIndustryActionPerformed(evt);
             }
         });
 
         button_deleteIndustry.setText("Delete Industry");
-        button_deleteIndustry.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_deleteIndustry.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_deleteIndustryActionPerformed(evt);
             }
         });
@@ -97,8 +105,10 @@ public class frmIndustries extends javax.swing.JFrame {
         combobox_deleteIndustry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         button_close.setText("Close");
-        button_close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_close.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_closeActionPerformed(evt);
             }
         });

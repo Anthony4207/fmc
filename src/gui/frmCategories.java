@@ -40,7 +40,8 @@ public class frmCategories extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jColorChooser1 = new javax.swing.JColorChooser();
         jPanel3 = new javax.swing.JPanel();
@@ -304,6 +305,7 @@ public class frmCategories extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Add Category:");
@@ -332,29 +334,37 @@ public class frmCategories extends javax.swing.JFrame {
 
         button_delCat.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         button_delCat.setText("Delete");
-        button_delCat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_delCat.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_delCatActionPerformed(evt);
             }
         });
 
         button_closeCat.setText("Close");
-        button_closeCat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_closeCat.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_closeCatActionPerformed(evt);
             }
         });
 
         button_confirmeditCat.setText("Confirm Edit");
-        button_confirmeditCat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_confirmeditCat.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_confirmeditCatActionPerformed(evt);
             }
         });
 
         button_confirmaddCat.setText("Confirm Add");
-        button_confirmaddCat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        button_confirmaddCat.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 button_confirmaddCatActionPerformed(evt);
             }
         });

@@ -129,6 +129,7 @@ public class frmMain extends javax.swing.JFrame
         labelCourse = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         comboCategory.setEnabled(false);
         comboCategory.addItemListener(new java.awt.event.ItemListener()
