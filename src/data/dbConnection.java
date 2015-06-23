@@ -261,7 +261,7 @@ public class dbConnection
 
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
-	    // ps.execute();
+	    ps.execute();
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
@@ -278,7 +278,7 @@ public class dbConnection
 
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
 
-	    // ps.execute();
+	    ps.execute();
 	} catch (SQLException e) {
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
@@ -362,6 +362,24 @@ public class dbConnection
 	    Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 	}
 	return rs;
+    }
+    
+    public void insertAnalytic(Analytic a)
+    {
+        String sql = "insert into `Analytics` (`AnalyticID`, `UserID`, `CourseID`, `DateAccessed`) values (?, ?, ?, ?);";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, a.getAnalyticID());
+            ps.setInt(2, a.getUserID());
+            ps.setInt(3, a.getCourseID());
+            ps.setDate(4, a.getDateAccessed());
+            
+            Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+	    
+            ps.execute();
+        } catch (SQLException e) {
+             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
     }
     //</editor-fold>
 }
