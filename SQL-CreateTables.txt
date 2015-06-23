@@ -1,7 +1,7 @@
 create table Industries
 (
   IndustryID int not null auto_increment, 
-  Name       varchar(255), 
+  Name       varchar(80), 
   primary key (IndustryID)
 );
 
@@ -69,7 +69,7 @@ create table Users
   userID        int not null auto_increment, 
   Email         varchar(60), 
   DateOfBirth   date, 
-  ContactNumber int(20), 
+  ContactNumber varchar(20), 
   CreationDate  date, 
   LastLoginDate date, 
   Admin         boolean, 
