@@ -17,12 +17,12 @@ public class Analytic {
     
     public Analytic(int analyticID, int userID, int courseID, Date dateAccessed) {
 
-this.analyticID = analyticID;
-this.userID = userID;
-this.courseID = courseID;
-this.dateAccessed = dateAccessed;
+	this.analyticID = analyticID;
+	this.userID = userID;
+	this.courseID = courseID;
+	this.dateAccessed = dateAccessed;
 
-}
+    }
 
     /**
      * @return the analyticID

@@ -345,4 +345,19 @@ public class dbConnection
 	return careerPathwaysForCategory;
     }
     //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Analytics">
+    public ResultSet getAnalyticsResultSet()
+    {
+	String sql = "select Courses.Name, Users.Email, Analytics.DateAccessed from Courses join Analytics on Courses.CourseID = Analytics.CourseID join Users on Analytics.UserID = Users.UserID";
+	try {
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    
+	    Logger.getLogger(dbConnection.class.getName()).log(Level.INFO, ps.toString());
+	    
+	    rs = ps.executeQuery();
+	} catch (Exception e) {
+	}
+	return rs;
+    }
+    //</editor-fold>
 }
