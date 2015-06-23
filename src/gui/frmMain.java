@@ -1,5 +1,6 @@
 package gui;
 
+import data.Analytic;
 import data.Category;
 import data.Course;
 import data.EmployabilitySkill;
@@ -8,15 +9,16 @@ import data.JobOutcome;
 import data.User;
 import data.dbConnection;
 import java.awt.Component;
+import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.event.PopupMenuEvent;
 
 public class frmMain extends javax.swing.JFrame
 {
 
     dbConnection dbCon;
+    User activeUser;
 
     public frmMain()
     {
@@ -268,6 +270,11 @@ public class frmMain extends javax.swing.JFrame
                 comboCoursePopupMenuWillBecomeVisible(evt);
             }
         });
+        comboCourse.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCourseItemStateChanged(evt);
+            }
+        });
 
         labelCourse.setText("Course");
 
@@ -361,6 +368,7 @@ public class frmMain extends javax.swing.JFrame
 			labelLogin.setText("Logged in as " + u.getUserID() + " (Admin)");
 			enableAdminComponents();
 		    }
+                    activeUser = u;
 		} else {
 		    labelLogin.setText("User account does not exist");
 		}
@@ -433,6 +441,12 @@ public class frmMain extends javax.swing.JFrame
             populateComboCourse();
         }
     }//GEN-LAST:event_comboCoursePopupMenuWillBecomeVisible
+
+    private void comboCourseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCourseItemStateChanged
+        Course c = (Course) comboCourse.getSelectedItem();
+        Analytic a = new Analytic(0, activeUser.getUserID(), c.getCourseID(), new Date(System.currentTimeMillis()));
+        dbCon.insertAnalytic(a);
+    }//GEN-LAST:event_comboCourseItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdminModifyCategories;
